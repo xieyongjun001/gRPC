@@ -1,0 +1,43 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "CareerCloud.gRPC.Protos";
+
+package ApplicantEducation;
+
+
+import "Protos/Common.proto";
+import "google/protobuf/timestamp.proto";
+
+service ApplicantEducation{
+    //create
+     rpc CreateApplicantEducation(ApplicantEducationEntity) returns(ApplicantEducationStatusMessage);
+
+    //update
+    rpc UpdateApplicantEducation(ApplicantEducationEntity) returns(ApplicantEducationStatusMessage);
+
+    //read
+    rpc GetApplicantEducation(IdRequestApplicantEducation) returns(ApplicantEducationEntity);
+
+    //delete
+    rpc DeleteApplicantEducation(IdRequestApplicantEducation) returns(ApplicantEducationStatusMessage);
+
+}
+
+message IdRequestApplicantEducation{
+    string Id=1;
+}
+
+
+message ApplicantEducationEntity{
+    string Id=1;
+    string Applicant = 2;
+    string Major = 3;
+    string CertificationDiploma=4;
+    google.protobuf.Timestamp startDate= 5;
+    google.protobuf.Timestamp CompletionDate= 6;
+    int32 CompletionPercent = 7;
+}
+
+message ApplicantEducationStatusMessage {
+  Common.CommonResponse common_response = 10;
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option csharp_namespace = "CareerCloud.gRPC.Protos";
+
+package SecurityLogin;
+
+
+import "Protos/Common.proto";
+
+import "google/protobuf/timestamp.proto";
+
+service SecurityLogin{
+    //create
+     rpc CreateSecurityLogin(SecurityLoginEntity) returns(SecurityLoginStatusMessage);
+
+    //update
+    rpc UpdateSecurityLogin(SecurityLoginEntity) returns(SecurityLoginStatusMessage);
+
+    //read
+    rpc GetSecurityLogin(IdRequestSecurityLogin) returns(SecurityLoginEntity);
+
+    //delete
+    rpc DeleteSecurityLogin(IdRequestSecurityLogin) returns(SecurityLoginStatusMessage);
+
+}
+
+message IdRequestSecurityLogin{
+    string Id=1;
+}
+
+
+message SecurityLoginEntity{
+
+    string Id=1;
+    string Login = 2;
+    string Password = 3;
+    google.protobuf.Timestamp Created= 5;
+    google.protobuf.Timestamp PasswordUpdate= 6;
+    google.protobuf.Timestamp AgreementAccepted= 7;
+    bool IsLocked = 8;
+    bool IsInactive = 9;
+    string EmailAddress = 10;
+    string PhoneNumber = 11;
+    string FullName = 12;
+    bool ForceChangePassword = 13;
+    string PrefferredLanguage = 14;
+}
+
+message SecurityLoginStatusMessage {
+  Common.CommonResponse common_response = 10;
+}

@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option csharp_namespace = "CareerCloud.gRPC.Protos";
+
+package ApplicantProfile;
+
+
+import "Protos/Common.proto";
+
+import "google/protobuf/timestamp.proto";
+
+service ApplicantProfile{
+    //create
+     rpc CreateApplicantProfile(ApplicantProfileEntity) returns(ApplicantProfileStatusMessage);
+
+    //update
+    rpc UpdateApplicantProfile(ApplicantProfileEntity) returns(ApplicantProfileStatusMessage);
+
+    //read
+    rpc GetApplicantProfile(IdRequestApplicantProfile) returns(ApplicantProfileEntity);
+
+    //delete
+    rpc DeleteApplicantProfile(IdRequestApplicantProfile) returns(ApplicantProfileStatusMessage);
+
+}
+
+message IdRequestApplicantProfile{
+    string Id=1;
+}
+
+
+message ApplicantProfileEntity{
+
+    string Id=1;
+    float CurrentSalary = 2;
+    float CurrentRate = 3;
+    string Country=4;
+    string Province=5;
+    string Street=6;
+    string City=7;
+    string PostalCode=8;
+    string Login=9;
+    string Currency=10;
+}
+
+message ApplicantProfileStatusMessage {
+  Common.CommonResponse common_response = 10;
+}

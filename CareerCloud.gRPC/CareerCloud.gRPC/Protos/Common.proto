@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option csharp_namespace = "CareerCloud.gRPC.Protos";
+
+package Common;
+
+message CommonResponse {
+  bool success = 1;
+  string message = 2;
+}

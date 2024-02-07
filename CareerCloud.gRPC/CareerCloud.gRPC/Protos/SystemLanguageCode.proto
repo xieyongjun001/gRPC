@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "CareerCloud.gRPC.Protos";
+
+package SystemLanguageCode;
+
+
+import "Protos/Common.proto";
+
+import "google/protobuf/timestamp.proto";
+
+service SystemLanguageCode{
+    //create
+     rpc CreateSystemLanguageCode(SystemLanguageCodeEntity) returns(SystemLanguageCodeStatusMessage);
+
+    //update
+    rpc UpdateSystemLanguageCode(SystemLanguageCodeEntity) returns(SystemLanguageCodeStatusMessage);
+
+    //read
+    rpc GetSystemLanguageCode(IdRequestSystemLanguageCode) returns(SystemLanguageCodeEntity);
+
+    //delete
+    rpc DeleteSystemLanguageCode(IdRequestSystemLanguageCode) returns(SystemLanguageCodeStatusMessage);
+
+}
+
+message IdRequestSystemLanguageCode{
+    string LanguageID=1;
+}
+
+
+message SystemLanguageCodeEntity{
+
+    string LanguageID=1;
+    string Name = 2;
+    string NativeName = 3;
+   
+}
+
+message SystemLanguageCodeStatusMessage {
+  Common.CommonResponse common_response = 10;
+}
